@@ -1,6 +1,6 @@
 <template>
   <div class="quote-wrapper">
-    <img alt="chuck-norris" src="../assets/chuck-norris.png" class="img" />
+    <img alt="chuck-norris" src="../assets/chuck-norris.png" class="img" @click.prevent="loadRandomQuote"/>
     <h1 class="quote">"{{ randomQuote.quote }}"</h1>
   </div>
 </template>
