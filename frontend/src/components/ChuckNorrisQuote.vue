@@ -1,7 +1,7 @@
 <template>
   <div class="quote-wrapper">
     <img alt="chuck-norris" src="../assets/chuck-norris.png" class="img" />
-    <h1 class="quote">"{{ randomQuote }}"</h1>
+    <h1 class="quote">"{{ randomQuote.quote }}"</h1>
   </div>
 </template>
 
@@ -16,12 +16,22 @@ export default {
   },
   methods: {
     loadRandomQuote() {
-      // ToDo: Rufen Sie hier den Rest-Endpunkt des Servers auf
+      var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+      fetch("http://localhost:8080/api/v1/quotes", requestOptions)
+          .then(response => response.json())
+          .then(result => console.log(this.randomQuote=result))
+          .catch(error => console.log('error', error));
     },
     getRandomInt(maxExclusive) {
       return Math.floor(Math.random() * maxExclusive);
     },
   },
+beforeMount(){
+  this.loadRandomQuote()
+},
 };
 </script>
 
